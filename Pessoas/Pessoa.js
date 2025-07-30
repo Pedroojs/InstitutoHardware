@@ -22,8 +22,16 @@ class Pessoa {
     }
 
     set email(email) {
-        this.#email = email;
+    if (
+        typeof email !== 'string' ||
+        email.trim() === '' ||
+        !email.endsWith('@gmail.com')
+    ) {
+        throw new Error('O email deve terminar com "@gmail.com".');
     }
+    this.#email = email;
+}
+    
     get email() {
         return this.#email;
     }
